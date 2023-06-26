@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int isPerfectNumber(int num) {
+    int sum = 1;  // Sum initialized with 1 because 1 is a proper divisor of every number
+    
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            sum += i;
+            if (i * i != num) {
+                sum += num / i;
+            }
+        }
+    }
+    
+    if (sum == num) {
+        return 1;  // Number is perfect
+    } else {
+        return 0;  // Number is not perfect
+    }
+}
+
+void printPerfectNumbers(int n) {
+    int count = 0;
+    int num = 1;
+    
+    printf("First %d perfect numbers are: ", n);
+    
+    while (count < n) {
+        if (isPerfectNumber(num)) {
+            printf("%d ", num);
+            count++;
+        }
+        num++;
+    }
+    
+    printf("\n");
+}
+
+int main() {
+    int n = 3;
+    printPerfectNumbers(n);
+    
+    return 0;
+}
